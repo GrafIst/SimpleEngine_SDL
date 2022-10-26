@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL.h>
+#include <SDL_image.h>
 
 //predeclare, only include in cpp, this is a good optimising method
 class Window; 
@@ -18,6 +19,8 @@ public:
 	void drawRect(const Rectangle& rect);
 	void endDraw();
 	void close();
+
+	inline SDL_Renderer* toSDLRenderer() const { return SDLRenderer; }
 
 private:
 	//SDL_Renderer* SDLRenderer = nullptr ; two way of initializing ?
