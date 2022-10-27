@@ -10,7 +10,9 @@ bool Game::initalize()
 
 void Game::load()
 {
-	Assets::loadTexture(renderer, "Res\Ship01.png", "ship01");
+	Assets::loadTexture(renderer, "Res/Ship01.png", "ship01");
+	// si on utilise "\" il faut en mettre deux, ou utiliser le / normal
+
 	//Doesn't open my texture for some reason
 }
 
@@ -58,6 +60,8 @@ void Game::removeActor(Actor* actor)
 	//Erase actor from the two vectors
 	auto iter = std::find(begin(pendingActors), end(pendingActors), actor);
 	//QA : Quelle est la différence entre begin() et .begin() avec les iterators
+	//REPONSE : différence de version, .begin (c++11) et begin() (c++14)
+
 	if (iter != end(pendingActors)) {
 		//Swap to end of vector and pop off (avoid erase copies)
 		std::iter_swap(iter, end(pendingActors) - 1);
