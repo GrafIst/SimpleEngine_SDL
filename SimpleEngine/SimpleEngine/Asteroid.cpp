@@ -5,8 +5,9 @@
 #include "SpriteComponent.h"
 #include "MoveComponent.h"
 #include "Assets.h"
+#include "Game.h"
 
-Asteroid::Asteroid() : Actor()
+Asteroid::Asteroid() : Actor(), collision(nullptr)
 {
 	Vector2 randPos = Random::getVector(Vector2::zero, Vector2(WINDOW_WIDTH, WINDOW_HEIGHT));
 	setPosition(randPos);
@@ -15,6 +16,16 @@ Asteroid::Asteroid() : Actor()
 	SpriteComponent* sc = new SpriteComponent(this, Assets::getTexture("Astroid"));
 	MoveComponent* mc = new MoveComponent(this);
 	mc->setForwardSpeed(150.0f);
+
+	collision = new CircleCollisionComponent(this);
+	collision->setRadius(40.0f);
+
+	getGame().addAsteroid(this);
+}
+
+Asteroid::~Asteroid()
+{
+	getGame().removeAsteroid(this);
 }
 
 void Asteroid::updateActor(float dt)

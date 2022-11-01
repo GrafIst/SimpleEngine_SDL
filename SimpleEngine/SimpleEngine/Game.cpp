@@ -6,6 +6,7 @@
 #include "Assets.h"
 #include "BackgroundSpriteComponent.h"
 #include "Asteroid.h"
+#include "Ship.h"
 
 
 bool Game::initalize()
@@ -26,6 +27,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Farback02.png", "Farback02");
 	Assets::loadTexture(renderer, "Res\\Stars.png", "Stars");
 	Assets::loadTexture(renderer, "Res\\Astroid.png", "Astroid");
+	Assets::loadTexture(renderer, "Res\\Laser.png", "Laser");
 	// si on utilise "\" il faut en mettre deux, ou utiliser le / normal
 
 	//Single sprite
@@ -34,14 +36,15 @@ void Game::load()
 	actor->setPosition(Vector2{ 100, 100 });*/
 
 	// Animated sprite
-	vector<Texture*> animTextures{
+	/*vector<Texture*> animTextures{
 		&Assets::getTexture("Ship01"),
 		&Assets::getTexture("Ship02"),
 		&Assets::getTexture("Ship03"),
 		&Assets::getTexture("Ship04"),
-	};
-	Actor* ship = new Actor();
-	AnimSpriteComponent* animatedSprite = new AnimSpriteComponent(ship, animTextures);
+	};*/
+	//Actor* ship = new Actor();
+
+	Ship* ship = new Ship();
 	ship->setPosition(Vector2{ 100, 300 });
 
 	const int astroidNumber = 20;
@@ -146,6 +149,13 @@ void Game::processInput()
 	if (keyboardState[SDL_SCANCODE_ESCAPE]) {
 		isRunning = false;
 	}
+
+	//Actor input
+	isUpdatingActors = true;
+	for (auto actor : actors) {
+		actor->processInput(keyboardState);
+	}
+	isUpdatingActors = false;
 }
 
 void Game::update(float dt)
@@ -174,8 +184,6 @@ void Game::update(float dt)
 	for (auto deadActor : deadActors) {
 		delete deadActor;
 	}
-
-
 }
 
 void Game::render()
@@ -184,3 +192,23 @@ void Game::render()
 	renderer.draw();
 	renderer.endDraw();
 }
+
+vector<Asteroid*>& Game::getAsteroids()
+{
+	return asteroids;
+}
+
+void Game::addAsteroid(Asteroid* asteroid)
+{
+	asteroids.emplace_back(asteroid);
+}
+
+void Game::removeAsteroid(Asteroid* asteroid)
+{
+	auto iter = std::find(begin(asteroids), end(asteroids), asteroid);
+	if (iter != asteroids.end()) {
+		asteroids.erase(iter);
+	}
+}
+
+

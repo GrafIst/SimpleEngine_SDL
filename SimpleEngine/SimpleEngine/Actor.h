@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Vector2.h"
+#include <SDL_stdinc.h>
 using std::vector;
 
 class Game;
@@ -30,6 +31,7 @@ public:
 	void setPosition(Vector2 positionP);
 	void setScale(float scaleP);
 	void setRotation(float rotationP);
+	void setState(ActorState stateP);
 
 	//METHOD
 	void update(float dt);
@@ -37,8 +39,9 @@ public:
 	virtual void updateActor(float dt);
 	void addComponent(Component* component); //we use pointers rather than ref so we can use "this" pointer in the constructor/destructor
 	void removeComponent(Component* component);
-
 	Vector2 getForward() const;
+	void processInput(const Uint8* keyState);
+	virtual void actorInput(const Uint8* keyState);
 
 private:
 	Game& game;

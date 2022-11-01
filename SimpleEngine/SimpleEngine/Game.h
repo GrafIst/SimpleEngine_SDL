@@ -6,6 +6,7 @@
 #include "Actor.h"
 #include "Assets.h"
 #include "SpriteComponent.h"
+#include "Asteroid.h"
 
 using std::vector;
 
@@ -53,5 +54,14 @@ private:
 	vector<Actor*> pendingActors;
 	/*We don't want to insert actors in the middle of the actors' 
 	update loop*/
+
+	//GAME SPECIFIC
+public:
+	vector<Asteroid*>& getAsteroids();
+	void addAsteroid(Asteroid* asteroid);
+	void removeAsteroid(Asteroid* asteroid);
+
+private:
+	vector<Asteroid*> asteroids;
 };
 

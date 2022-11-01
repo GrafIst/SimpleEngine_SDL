@@ -1,4 +1,5 @@
 #pragma once
+#include <SDL_stdinc.h>
 
 class Actor;
 //Forward declaration of Actor. Because Actor.h will include Compnent.h
@@ -17,6 +18,7 @@ public:
 	int getUpdateOrder() const { return updateOrder; }
 
 	virtual void update(float dt); //virtual pour gérer l'héritage
+	virtual void processInput(const Uint8* keyState);
 
 protected:
 	Actor& owner;
