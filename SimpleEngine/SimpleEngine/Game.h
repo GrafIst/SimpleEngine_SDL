@@ -47,5 +47,7 @@ private:
 	bool isUpdatingActors;
 	vector<Actor*> actors;
 	vector<Actor*> pendingActors;
+	/*We don't want to insert actors in the middle of the actors' 
+	update loop*/
 };
 

@@ -56,7 +56,7 @@ void Actor::addComponent(Component* component)
 	auto iter = begin(components);
 	for (; iter != end(components); ++iter) {
 		if (myOrder < (*iter)->getUpdateOrder()) {
-			break;
+			break; //when we found the right place in the update order list, we stop the loop
 		}
 	}
 

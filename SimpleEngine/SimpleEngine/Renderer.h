@@ -23,7 +23,7 @@ public:
 	inline SDL_Renderer* toSDLRenderer() const { return SDLRenderer; }
 
 private:
-	//SDL_Renderer* SDLRenderer = nullptr ; two way of initializing ?
+	//SDL_Renderer* SDLRenderer = nullptr ; two way of initializing 
 	SDL_Renderer* SDLRenderer {nullptr};
 };
 

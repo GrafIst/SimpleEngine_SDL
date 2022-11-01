@@ -97,7 +97,7 @@ void Game::processInput()
 void Game::update(float dt)
 {
 	//Update actors
-	isUpdatingActors = true;
+	isUpdatingActors = true; //if it's updating, safety so we don't add actors to the loop, (put in pendingactor)
 	for (auto actor : actors) {
 		actor->update(dt);
 	}
