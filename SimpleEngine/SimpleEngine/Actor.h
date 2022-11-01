@@ -38,6 +38,8 @@ public:
 	void addComponent(Component* component); //we use pointers rather than ref so we can use "this" pointer in the constructor/destructor
 	void removeComponent(Component* component);
 
+	Vector2 getForward() const;
+
 private:
 	Game& game;
 	ActorState state;

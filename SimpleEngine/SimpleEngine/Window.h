@@ -2,7 +2,7 @@
 #include <SDL.h>
 
 constexpr int WINDOW_WIDTH = 1024; //constexp au lien de const, apparement cest mieux
-constexpr int WINDOW_HEIGT = 768;
+constexpr int WINDOW_HEIGHT = 768;
 
 class Window
 {
@@ -26,6 +26,6 @@ public:
 private:
 	SDL_Window* SDLWindow {nullptr}; //tjr initialisé un pointer par un nullptr
 	int width{ WINDOW_WIDTH };
-	int height{ WINDOW_HEIGT };
+	int height{ WINDOW_HEIGHT };
 };
 

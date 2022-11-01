@@ -2,6 +2,8 @@
 #include <algorithm>
 #include "Game.h"
 #include "Component.h"
+#include "Maths.h"
+#include "Log.h"
 
 Actor::Actor() : state(Actor::ActorState::Active), position(Vector2::zero), scale(1.0f), rotation(0.0f), game(Game::instance())
 {
@@ -69,4 +71,9 @@ void Actor::removeComponent(Component* component)
 	if (iter != end(components)) {
 		components.erase(iter);
 	}
+}
+
+Vector2 Actor::getForward() const
+{
+	return Vector2(Maths::cos(rotation), -Maths::sin(rotation));
 }

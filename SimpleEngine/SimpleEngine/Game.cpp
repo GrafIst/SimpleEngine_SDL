@@ -1,5 +1,12 @@
 #include "Game.h"
+#include "Actor.h"
+#include "SpriteComponent.h"
+#include "AnimSpriteComponent.h"
 #include "Timer.h"
+#include "Assets.h"
+#include "BackgroundSpriteComponent.h"
+#include "Asteroid.h"
+
 
 bool Game::initalize()
 {
@@ -10,10 +17,57 @@ bool Game::initalize()
 
 void Game::load()
 {
-	Assets::loadTexture(renderer, "Res/Ship01.png", "ship01");
+	// Load textures
+	Assets::loadTexture(renderer, "Res\\Ship01.png", "Ship01");
+	Assets::loadTexture(renderer, "Res\\Ship02.png", "Ship02");
+	Assets::loadTexture(renderer, "Res\\Ship03.png", "Ship03");
+	Assets::loadTexture(renderer, "Res\\Ship04.png", "Ship04");
+	Assets::loadTexture(renderer, "Res\\Farback01.png", "Farback01");
+	Assets::loadTexture(renderer, "Res\\Farback02.png", "Farback02");
+	Assets::loadTexture(renderer, "Res\\Stars.png", "Stars");
+	Assets::loadTexture(renderer, "Res\\Astroid.png", "Astroid");
 	// si on utilise "\" il faut en mettre deux, ou utiliser le / normal
 
-	//Doesn't open my texture for some reason
+	//Single sprite
+	/*auto actor = new Actor();
+	auto sprite = new SpriteComponent(actor, Assets::getTexture("Ship01"));
+	actor->setPosition(Vector2{ 100, 100 });*/
+
+	// Animated sprite
+	vector<Texture*> animTextures{
+		&Assets::getTexture("Ship01"),
+		&Assets::getTexture("Ship02"),
+		&Assets::getTexture("Ship03"),
+		&Assets::getTexture("Ship04"),
+	};
+	Actor* ship = new Actor();
+	AnimSpriteComponent* animatedSprite = new AnimSpriteComponent(ship, animTextures);
+	ship->setPosition(Vector2{ 100, 300 });
+
+	const int astroidNumber = 20;
+	for (int i = 0; i < astroidNumber; ++i) {
+		new Asteroid();
+	}
+
+	// Background
+	// Create the "far back" background
+	vector<Texture*> bgTexsFar{
+		&Assets::getTexture("Farback01"),
+		&Assets::getTexture("Farback02")
+	};
+	Actor* bgFar = new Actor();
+	BackgroundSpriteComponent* bgSpritesFar = new BackgroundSpriteComponent(bgFar, bgTexsFar);
+	bgSpritesFar->setScrollSpeed(-100.0f);
+
+	// Create the closer background
+	Actor* bgClose = new Actor();
+	std::vector<Texture*> bgTexsClose{
+		&Assets::getTexture("Stars"),
+		&Assets::getTexture("Stars")
+	};
+	BackgroundSpriteComponent* bgSpritesClose = new BackgroundSpriteComponent(bgClose, bgTexsClose, 50);
+	bgSpritesClose->setScrollSpeed(-200.0f);
+
 }
 
 void Game::loop()
@@ -127,6 +181,6 @@ void Game::update(float dt)
 void Game::render()
 {
 	renderer.beginDraw();
-
+	renderer.draw();
 	renderer.endDraw();
 }
