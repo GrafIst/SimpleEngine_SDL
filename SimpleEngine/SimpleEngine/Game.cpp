@@ -49,7 +49,7 @@ void Game::load()
 	};*/
 	//Actor* ship = new Actor();
 
-	Ground* ground = new Ground();
+	ground = new Ground();
 
 	Ship* ship = new Ship();
 	ship->setPosition(Vector2{ WINDOW_WIDTH/2, 50 });

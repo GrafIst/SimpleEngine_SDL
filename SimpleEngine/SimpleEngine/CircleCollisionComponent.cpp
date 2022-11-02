@@ -36,8 +36,8 @@ bool IntersectWithRectangle(const CircleCollisionComponent& a, const RectangleCo
 	Vector2 aCenter = a.getCenter();
 	Vector2 bCenter = b.getCenter();
 
-	//si la collision a un rectangle en dessous de lui
-	// 
+	//si la collision a un rectangle en dessous de lui ou au dessus
+	// TODO : left and right
 	// 
 	//first on calcul la distance entre les deux centres Y
 	float aby = bCenter.y - aCenter.y;
