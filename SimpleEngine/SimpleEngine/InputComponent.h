@@ -19,7 +19,6 @@ public:
 	void setClockwiseKey(int key);
 	void setCounterClockwiseKey(int key);
 
-
 private:
 	float maxForwardSpeed;
 	float maxAngularSpeed;

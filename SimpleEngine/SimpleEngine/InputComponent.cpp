@@ -1,5 +1,6 @@
 #include "InputComponent.h"
 #include <SDL_scancode.h>
+#include "Actor.h"
 
 InputComponent::InputComponent(Actor* ownerP) :
 	MoveComponent(ownerP),
@@ -18,10 +19,13 @@ void InputComponent::processInput(const Uint8* keyState)
 	if (keyState[forwardKey])
 	{
 		forwardSpeed += maxForwardSpeed;
+		addForce(owner.getForward() * forwardSpeed);
 	}
 	if (keyState[backKey])
 	{
-		forwardSpeed -= maxForwardSpeed;
+		//disable the back key because useless here
+		/*forwardSpeed -= maxForwardSpeed;
+		addForce((owner.getForward()) * forwardSpeed);*/
 	}
 	setForwardSpeed(forwardSpeed);
 

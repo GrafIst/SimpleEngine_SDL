@@ -7,6 +7,7 @@
 #include "BackgroundSpriteComponent.h"
 #include "Asteroid.h"
 #include "Ship.h"
+#include "Maths.h"
 
 
 bool Game::initalize()
@@ -45,14 +46,15 @@ void Game::load()
 	//Actor* ship = new Actor();
 
 	Ship* ship = new Ship();
-	ship->setPosition(Vector2{ 100, 300 });
+	ship->setPosition(Vector2{ WINDOW_WIDTH/2, 50 });
+	ship->setRotation(Maths::pi/2);
 
-	const int astroidNumber = 20;
+	const int astroidNumber =9;
 	for (int i = 0; i < astroidNumber; ++i) {
 		new Asteroid();
 	}
 
-	// Background
+	// Backgroundz
 	// Create the "far back" background
 	vector<Texture*> bgTexsFar{
 		&Assets::getTexture("Farback01"),

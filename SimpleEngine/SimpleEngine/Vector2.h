@@ -11,6 +11,7 @@ struct Vector2
 	//si je veux la définir et qu'elle est static, je dois l'initaliser dans le cpp
 	static const Vector2 unitX;
 	static const Vector2 unitY;
+	static const Vector2 one;
 
 	void set(float xP, float yP);
 	float lengthSq() const;

@@ -1,6 +1,7 @@
 #pragma once
 #include "Actor.h"
 #include "CircleCollisionComponent.h"
+#include "MoveComponent.h"
 
 class Asteroid : public Actor
 {
@@ -14,5 +15,6 @@ public:
 
 private:
 	CircleCollisionComponent* collision;
+	MoveComponent* mc;
 };
 
