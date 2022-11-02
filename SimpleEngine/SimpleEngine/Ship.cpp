@@ -55,7 +55,7 @@ void Ship::updateActor(float dt)
 	//with ground
 	auto ground = getGame().getGround();
 	if (IntersectWithRectangle(*collision, ground->getCollision())) {
-		Log::info("yoo i collide");
+		//ca collide !
 	}
 	//TODO : collision check enntre CircleCollision and RectangleCollision
 
