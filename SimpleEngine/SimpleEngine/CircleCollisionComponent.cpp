@@ -31,3 +31,20 @@ bool Interesct(const CircleCollisionComponent& a, const CircleCollisionComponent
 	float sumOfRadius = a.getRadius() + b.getRadius();
 	return distSq <= sumOfRadius * sumOfRadius;
 }
+
+bool IntersectWithRectangle(const CircleCollisionComponent& a, const RectangleCollisionComponent& b) {
+	Vector2 aCenter = a.getCenter();
+	Vector2 bCenter = b.getCenter();
+
+	//si la collision a un rectangle en dessous de lui
+	// 
+	// 
+	//first on calcul la distance entre les deux centres Y
+	float aby = bCenter.y - aCenter.y;
+	float distSq = aby * aby;
+
+	//puis somme des hitbox
+	float sumOfRadius = a.getRadius() + ((b.getHitbox()->height - b.getHitbox()->y) / 2);
+	return distSq <= sumOfRadius * sumOfRadius;
+
+}

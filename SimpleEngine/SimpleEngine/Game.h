@@ -7,6 +7,7 @@
 #include "Assets.h"
 #include "SpriteComponent.h"
 #include "Asteroid.h"
+#include "Ground.h"
 
 using std::vector;
 
@@ -60,8 +61,11 @@ public:
 	vector<Asteroid*>& getAsteroids();
 	void addAsteroid(Asteroid* asteroid);
 	void removeAsteroid(Asteroid* asteroid);
+	Ground* getGround() { return ground; };
+	void setGround(Ground* groundP) { ground = ground; }
 
 private:
 	vector<Asteroid*> asteroids;
+	Ground* ground;
 };
 

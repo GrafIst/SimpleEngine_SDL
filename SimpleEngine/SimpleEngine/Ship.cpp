@@ -7,6 +7,8 @@
 #include "Laser.h"
 #include "Game.h"
 #include "Window.h"
+#include "RectangleCollisionComponent.h"
+#include "Log.h"
 
 Ship::Ship() : Actor(), laserCooldown(0.0f), collision(nullptr), ic(nullptr) {
 	//SpriteComponent* sc = new SpriteComponent(this, Assets::getTexture("Ship"));
@@ -19,7 +21,7 @@ Ship::Ship() : Actor(), laserCooldown(0.0f), collision(nullptr), ic(nullptr) {
 	};
 	AnimSpriteComponent* asc = new AnimSpriteComponent(this, animTextures);
 	ic = new InputComponent(this);
-	ic->setMaxForwardSpeed(150.0f);
+	ic->setMaxForwardSpeed(200.0f);
 	ic->setMaxAngularSpeed(Maths::twoPi);
 	ic->setMaxVelocity(Vector2{200.0f,180.0f});
 	ic->setHorizontalDamp(15.0f);
@@ -42,13 +44,22 @@ void Ship::actorInput(const Uint8* keyState)
 
 void Ship::updateActor(float dt)
 {
-
 	//Manage ship's gravity
 	Vector2 gravity{ .0f, 9.81f };
 	ic->addForce(gravity * 10);
 
-	//Manage ship collision
 	laserCooldown -= dt;
+
+	//Manage ship collision
+	
+	//with ground
+	auto ground = getGame().getGround();
+	if (IntersectWithRectangle(*collision, ground->getCollision())) {
+		Log::info("yoo i collide");
+	}
+	//TODO : collision check enntre CircleCollision and RectangleCollision
+
+	//with asteroids
 	auto asteroids = getGame().getAsteroids();
 	for (auto asteroid : asteroids) {
 		if (Interesct(*collision, asteroid->getCollision())) {

@@ -2,6 +2,7 @@
 #include <SDL_rect.h>
 
 struct Rectangle {
+public:
 	float x;
 	float y;
 	float width;

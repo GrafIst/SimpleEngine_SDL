@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Vector2.h"
+#include "RectangleCollisionComponent.h"
 
 class CircleCollisionComponent : public Component
 {
@@ -21,3 +22,4 @@ private:
 
 bool Interesct(const CircleCollisionComponent& a, const CircleCollisionComponent& b);
 
+bool IntersectWithRectangle(const CircleCollisionComponent& a, const RectangleCollisionComponent& b);

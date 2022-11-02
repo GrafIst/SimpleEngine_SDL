@@ -129,8 +129,8 @@ void MoveComponent::HorizontalDamping(float dt)
 {
 	if (velocity.x > 0) { velocity.x -= (dt * horizontalDamp); }
 	else if (velocity.x < 0) { velocity.x += (dt * horizontalDamp); }
-	Log::info("Velocity Damping called");
-	std::cout << "Velocity X : " << velocity.x << "| Velocity Y : " << velocity.y << std::endl;
+	/*Log::info("Velocity Damping called");
+	std::cout << "Velocity X : " << velocity.x << "| Velocity Y : " << velocity.y << std::endl;*/
 }
 
 

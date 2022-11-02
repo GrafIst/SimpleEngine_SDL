@@ -8,6 +8,7 @@
 #include "Asteroid.h"
 #include "Ship.h"
 #include "Maths.h"
+#include "Ground.h"
 
 
 bool Game::initalize()
@@ -29,6 +30,9 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Stars.png", "Stars");
 	Assets::loadTexture(renderer, "Res\\Astroid.png", "Astroid");
 	Assets::loadTexture(renderer, "Res\\Laser.png", "Laser");
+
+	Assets::loadTexture(renderer, "Res\\Ground.png", "Ground");
+
 	// si on utilise "\" il faut en mettre deux, ou utiliser le / normal
 
 	//Single sprite
@@ -44,6 +48,8 @@ void Game::load()
 		&Assets::getTexture("Ship04"),
 	};*/
 	//Actor* ship = new Actor();
+
+	Ground* ground = new Ground();
 
 	Ship* ship = new Ship();
 	ship->setPosition(Vector2{ WINDOW_WIDTH/2, 50 });
