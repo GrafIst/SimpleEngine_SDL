@@ -2,7 +2,7 @@
 #include "Actor.h"
 #include "RectangleCollisionComponent.h"
 
-class Ground :public Actor
+class Ground : public Actor
 {
 public:
 	Ground();
