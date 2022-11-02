@@ -1,4 +1,6 @@
 #pragma once
+#include "Maths.h"
+
 struct Vector2
 {
 	float x {0};
@@ -32,6 +34,10 @@ struct Vector2
 	static Vector2 lerp(const Vector2& a, const Vector2& b, float f)
 	{
 		return Vector2(a + f * (b - a));
+	}
+
+	static Vector2 abs(const Vector2& a) {
+		return Vector2{ Maths::abs(a.x), Maths::abs(a.y) };
 	}
 
 	Vector2& operator+=(const Vector2& right)

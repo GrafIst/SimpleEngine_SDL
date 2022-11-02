@@ -55,10 +55,10 @@ void Game::load()
 	ship->setPosition(Vector2{ WINDOW_WIDTH/2, 50 });
 	ship->setRotation(Maths::pi/2);
 
-	const int astroidNumber =9;
+	/*const int astroidNumber =9;
 	for (int i = 0; i < astroidNumber; ++i) {
 		new Asteroid();
-	}
+	}*/
 
 	// Backgroundz
 	// Create the "far back" background

@@ -1,5 +1,6 @@
 #include "CircleCollisionComponent.h"
 #include "Actor.h"
+#include "Log.h"
 
 CircleCollisionComponent::CircleCollisionComponent(Actor* owner) :
 	Component(owner), radius(1.0f)
@@ -36,15 +37,28 @@ bool IntersectWithRectangle(const CircleCollisionComponent& a, const RectangleCo
 	Vector2 aCenter = a.getCenter();
 	Vector2 bCenter = b.getCenter();
 
-	//si la collision a un rectangle en dessous de lui ou au dessus
-	// TODO : left and right
-	// 
-	//first on calcul la distance entre les deux centres Y
-	float aby = bCenter.y - aCenter.y;
-	float distSq = aby * aby;
+	Vector2 ab = b.getCenter() - a.getCenter();
 
-	//puis somme des hitbox
-	float sumOfRadius = a.getRadius() + ((b.getHitbox()->height - b.getHitbox()->y) / 2);
+	float dotAB = Vector2::dot(ab, Vector2::unitY);
+
+	float distSq = 0.0f;
+	float sumOfRadius = 0.0f;
+
+
+	if (fabs(dotAB) <= 0.5) // horizontal facing
+	{
+		float abx = bCenter.x - aCenter.x;
+		distSq = abx * abx;
+		sumOfRadius = a.getRadius() + ((b.getHitbox()->width - b.getHitbox()->x) / 2);
+
+	}
+	else if(fabs(dotAB) > 0.5) { // vertical facing
+		//first on calcul la distance entre les deux centres Y
+		float aby = bCenter.y - aCenter.y;
+		distSq = aby * aby;
+		//puis somme des hitbox
+		sumOfRadius = a.getRadius() + ((b.getHitbox()->height - b.getHitbox()->y) / 2);
+	}
 	return distSq <= sumOfRadius * sumOfRadius;
-
+	
 }
