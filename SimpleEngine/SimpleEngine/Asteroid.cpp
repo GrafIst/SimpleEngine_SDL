@@ -8,14 +8,14 @@
 
 Asteroid::Asteroid() : Actor(), collision(nullptr), mc(nullptr)
 {
-	Vector2 randPos = Random::getVector(Vector2::zero, Vector2(WINDOW_WIDTH, WINDOW_HEIGHT));
+	Vector2 randPos = Random::getVector(Vector2(0, 230), Vector2(WINDOW_WIDTH - 200, WINDOW_HEIGHT - 200));
 	setPosition(randPos);
 	setRotation(Random::getFloatRange(0.0f, Maths::twoPi));
 
 	SpriteComponent* sc = new SpriteComponent(this, Assets::getTexture("Astroid"));
 	mc = new MoveComponent(this);
 	mc->setForwardSpeed(150.0f);
-	mc->setMaxVelocity(Vector2{ 50.0f, 0.0f });
+	mc->setMaxVelocity(Vector2{ 100.0f, 0.0f });
 
 	collision = new CircleCollisionComponent(this);
 	collision->setRadius(40.0f);

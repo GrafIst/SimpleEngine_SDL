@@ -20,7 +20,7 @@ void Turret::updateActor(float dt) {
 
 		if (shootingCooldown <= 0) {
 			Laser* laser = new Laser();
-			laser->setPosition(getPosition());
+			laser->setPosition(getPosition()-Vector2(0,35));
 			float rotateAngle = Vector2::radAngleBetween(Vector2::unitX, shootDir);
 			laser->setRotation(rotateAngle);
 			shootingCooldown = 3.0f;

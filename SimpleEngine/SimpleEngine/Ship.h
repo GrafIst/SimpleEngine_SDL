@@ -32,5 +32,6 @@ private:
 	InputComponent* ic;
 	float laserCooldown;
 	ShipState shipState;
+	bool playerWon;
 };
 

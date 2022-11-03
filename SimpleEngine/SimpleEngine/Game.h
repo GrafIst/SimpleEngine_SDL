@@ -66,6 +66,8 @@ public:
 	void setGround(Ground* groundP) { ground = groundP; }
 	Ship* getPlayer() { return ship; };
 
+	void playerWon();
+
 private:
 	vector<Asteroid*> asteroids;
 	Ground* ground;

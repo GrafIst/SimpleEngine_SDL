@@ -9,6 +9,7 @@
 #include "Maths.h"
 #include "Ground.h"
 #include "Turret.h"
+#include "Picture.h"
 
 
 bool Game::initalize()
@@ -33,6 +34,7 @@ void Game::load()
 
 	Assets::loadTexture(renderer, "Res\\Ground.png", "Ground");
 	Assets::loadTexture(renderer, "Res\\Turret.png", "Turret");
+	Assets::loadTexture(renderer, "Res\\WonText.png", "Won");
 
 	// si on utilise "\" il faut en mettre deux, ou utiliser le / normal
 
@@ -66,10 +68,10 @@ void Game::load()
 	rightTurret->setTarget(ship);
 
 
-	/*const int astroidNumber =9;
+	const int astroidNumber = 30 ;
 	for (int i = 0; i < astroidNumber; ++i) {
 		new Asteroid();
-	}*/
+	}
 
 	// Backgroundz
 	// Create the "far back" background
@@ -79,7 +81,7 @@ void Game::load()
 	};
 	Actor* bgFar = new Actor();
 	BackgroundSpriteComponent* bgSpritesFar = new BackgroundSpriteComponent(bgFar, bgTexsFar);
-	bgSpritesFar->setScrollSpeed(-100.0f);
+	bgSpritesFar->setScrollSpeed(-30.0f);
 
 	// Create the closer background
 	Actor* bgClose = new Actor();
@@ -88,7 +90,7 @@ void Game::load()
 		&Assets::getTexture("Stars")
 	};
 	BackgroundSpriteComponent* bgSpritesClose = new BackgroundSpriteComponent(bgClose, bgTexsClose, 50);
-	bgSpritesClose->setScrollSpeed(-200.0f);
+	bgSpritesClose->setScrollSpeed(-50.0f);
 
 }
 
@@ -228,6 +230,13 @@ void Game::removeAsteroid(Asteroid* asteroid)
 	if (iter != asteroids.end()) {
 		asteroids.erase(iter);
 	}
+}
+
+void Game::playerWon()
+{
+	Picture* pic = new Picture();
+	pic->setPosition(Vector2(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2));
+	SpriteComponent* sc = new SpriteComponent(pic, Assets::getTexture("Won"));
 }
 
 

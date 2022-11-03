@@ -146,6 +146,7 @@
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
+    <ClCompile Include="Picture.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RectangleCollisionComponent.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Log.h" />
     <ClInclude Include="Maths.h" />
     <ClInclude Include="MoveComponent.h" />
+    <ClInclude Include="Picture.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RectangleCollisionComponent.h" />
