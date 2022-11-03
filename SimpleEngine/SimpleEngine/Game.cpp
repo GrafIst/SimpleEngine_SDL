@@ -6,9 +6,9 @@
 #include "Assets.h"
 #include "BackgroundSpriteComponent.h"
 #include "Asteroid.h"
-#include "Ship.h"
 #include "Maths.h"
 #include "Ground.h"
+#include "Turret.h"
 
 
 bool Game::initalize()
@@ -32,6 +32,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Laser.png", "Laser");
 
 	Assets::loadTexture(renderer, "Res\\Ground.png", "Ground");
+	Assets::loadTexture(renderer, "Res\\Turret.png", "Turret");
 
 	// si on utilise "\" il faut en mettre deux, ou utiliser le / normal
 
@@ -51,9 +52,19 @@ void Game::load()
 
 	ground = new Ground();
 
-	Ship* ship = new Ship();
-	ship->setPosition(Vector2{ WINDOW_WIDTH/2, 50 });
-	ship->setRotation(Maths::pi/2);
+
+	ship = new Ship();
+	ship->setPosition(Vector2{ 20, 50 });
+	ship->setRotation(0);
+
+	Turret* leftTurret = new Turret();
+	leftTurret->setPosition(Vector2{ 70, WINDOW_HEIGHT -100 });
+	leftTurret->setTarget(ship);
+
+	Turret* rightTurret = new Turret();
+	rightTurret->setPosition(Vector2{ WINDOW_WIDTH-70, WINDOW_HEIGHT - 100 });
+	rightTurret->setTarget(ship);
+
 
 	/*const int astroidNumber =9;
 	for (int i = 0; i < astroidNumber; ++i) {

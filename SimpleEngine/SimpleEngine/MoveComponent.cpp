@@ -5,15 +5,16 @@
 #include "Log.h"
 #include <iostream>
 
-MoveComponent::MoveComponent(Actor* ownerP, int updateOrderP) : Component(ownerP, updateOrderP), 
-forwardSpeed(0.0f), 
+MoveComponent::MoveComponent(Actor* ownerP, int updateOrderP) : Component(ownerP, updateOrderP),
+forwardSpeed(0.0f),
 angularSpeed(0.0f),
 mass(1.0f),
 forces(Vector2::zero),
 velocity(Vector2::zero),
 acceleration(Vector2::zero),
-maxVelocity(Vector2{100,100}),
-horizontalDamp(0.0f)
+maxVelocity(Vector2{ 100,100 }),
+horizontalDamp(0.0f),
+screenWrap(true)
 {
 
 }
@@ -92,10 +93,21 @@ void MoveComponent::update(float dt)
 
 	//CALCULATE NEW POSITION P = P + V * dt
 	Vector2 newPosition = owner.getPosition() + (velocity * dt);
-	if (newPosition.x < 0) { newPosition.x = WINDOW_WIDTH; }
-	else if (newPosition.x > WINDOW_WIDTH) { newPosition.x = 0; }
-	if (newPosition.y < 0) { newPosition.y = WINDOW_HEIGHT; }
-	else if (newPosition.y > WINDOW_HEIGHT) { newPosition.y = 0; }
+
+	if (screenWrap) {
+		if (newPosition.x < 0) { newPosition.x = WINDOW_WIDTH; }
+		else if (newPosition.x > WINDOW_WIDTH) { newPosition.x = 0; }
+		if (newPosition.y < 0) { newPosition.y = WINDOW_HEIGHT; }
+		else if (newPosition.y > WINDOW_HEIGHT) { newPosition.y = 0; }
+	}
+	else {
+		if (newPosition.x < 0 || newPosition.x > WINDOW_WIDTH || newPosition.y < 0 || newPosition.y> WINDOW_HEIGHT)
+		{
+			//Out of screen
+			owner.setState(Actor::ActorState::Dead);
+		}
+	}
+	
 
 	owner.setPosition(newPosition);
 
@@ -131,6 +143,11 @@ void MoveComponent::HorizontalDamping(float dt)
 	else if (velocity.x < 0) { velocity.x += (dt * horizontalDamp); }
 	/*Log::info("Velocity Damping called");
 	std::cout << "Velocity X : " << velocity.x << "| Velocity Y : " << velocity.y << std::endl;*/
+}
+
+void MoveComponent::setScreenWrapping(bool wrapP)
+{
+	screenWrap = wrapP;
 }
 
 

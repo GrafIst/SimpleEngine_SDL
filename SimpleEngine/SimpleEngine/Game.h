@@ -8,6 +8,7 @@
 #include "SpriteComponent.h"
 #include "Asteroid.h"
 #include "Ground.h"
+#include "Ship.h"
 
 using std::vector;
 
@@ -62,10 +63,12 @@ public:
 	void addAsteroid(Asteroid* asteroid);
 	void removeAsteroid(Asteroid* asteroid);
 	Ground* getGround() { return ground; };
-	void setGround(Ground* groundP) { ground = ground; }
+	void setGround(Ground* groundP) { ground = groundP; }
+	Ship* getPlayer() { return ship; };
 
 private:
 	vector<Asteroid*> asteroids;
 	Ground* ground;
+	Ship* ship;
 };
 

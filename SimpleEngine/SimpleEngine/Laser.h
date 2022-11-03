@@ -1,6 +1,7 @@
 #pragma once
 #include "Actor.h"
 #include "CircleCollisionComponent.h"
+#include "MoveComponent.h"
 
 class Laser : public Actor
 {
@@ -12,5 +13,6 @@ public:
 private:
 	CircleCollisionComponent* collision;
 	float deathTimer;
+	MoveComponent* mc;
 };
 

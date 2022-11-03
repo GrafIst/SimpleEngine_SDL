@@ -30,6 +30,8 @@ public:
 
 	void HorizontalDamping(float dt);
 
+	void setScreenWrapping(bool wrapP);
+
 private:
 	float forwardSpeed;
 	float angularSpeed;
@@ -40,5 +42,6 @@ private:
 	Vector2 acceleration;
 	Vector2 maxVelocity;
 	float horizontalDamp;
+	bool screenWrap;
 };
 

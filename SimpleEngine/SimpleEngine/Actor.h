@@ -28,7 +28,7 @@ public:
 	const float getRotation() const { return rotation; }
 
 	//SETTERS
-	void setPosition(Vector2 positionP);
+	virtual void setPosition(Vector2 positionP);
 	void setScale(float scaleP);
 	void setRotation(float rotationP);
 	void setState(ActorState stateP);
@@ -46,10 +46,13 @@ public:
 private:
 	Game& game;
 	ActorState state;
-	Vector2 position;
+	//Vector2 position;
 	float scale;
 	float rotation;
 
 	vector<Component*> components;
+
+protected:
+	Vector2 position;
 };
 

@@ -40,6 +40,17 @@ struct Vector2
 		return Vector2{ Maths::abs(a.x), Maths::abs(a.y) };
 	}
 
+	static float magnitude(const Vector2& a) {
+		return sqrtf((a.x * a.x) + (a.y * a.y));
+	}
+
+	static float radAngleBetween(const Vector2& a, const Vector2& b) {
+		auto cosAngle = dot(a, b) / (magnitude(a) * magnitude(b));
+		auto angle = Maths::acos(cosAngle);
+		return angle;
+	}
+
+
 	Vector2& operator+=(const Vector2& right)
 	{
 		x += right.x;
